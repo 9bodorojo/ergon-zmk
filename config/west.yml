@@ -4,11 +4,11 @@ manifest:
       url-base: https://github.com/zmkfirmware
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
-    - name: zmkn1tsu
-      url-base: https://github.com/n1tsu
+    - name: zmkbodin
+      url-base: https://github.com/9bodorojo
   projects:
     - name: zmk
-      remote: zmkn1tsu
+      remote: zmkbodin
       revision: rotate-display
       import: app/west.yml
   self:
