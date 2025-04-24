@@ -22,84 +22,103 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer { // Layer 0
-            // |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  |
-            // |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |
-            // |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  |
-            //                   | SPC | TAB |     | RET | BCK |
-            label = "ALPHA";
-            display-name = "Alpha";
+        layer_0 { // alphabet
+            label = "LAYER_0";
+            display-name = "Layer 0";
             bindings = <
-                &kp Q       &kp W      &kp E       &kp R       &kp T          &kp Y     &kp U       &kp I       &kp O      &kp P
-                &hm LGUI A  &hm LALT S &hm LCTRL D &hm LSHFT F &kp G          &kp H     &hm RSHFT J &hm LCTRL K &hm LALT L &hm LGUI SEMI
-                &kp Z       &kp X      &kp C       &kp V       &kp B          &kp N     &hm RALT M  &kp COMMA   &kp DOT    &kp FSLH
-                                                   &lt 6 SPACE &lt 1 TAB      &lt 5 RET &lt 4 BSPC
+            // ╭───────────┬───────────┬───────────┬───────────┬───────────╮        ╭───────────┬───────────┬───────────┬───────────┬───────────╮
+            // |   Q(GUI)  |     W     |     E     |     R     |     T     |        |     Y     |     U     |     I     |     O     |     P     |
+                &hm LGUI Q     &kp W       &kp E       &kp R       &kp T                &kp Y       &kp U       &kp I       &kp O      &kp P
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |   A(ALT)  |     S     |     D     |     F     |     G     |        |     H     |     J     |     K     |     L     |   '(L4)   |
+                &hm LALT A     &kp S       &kp D       &kp F       &kp G                &kp H       &kp J       &kp K       &kp L     &lt 4 SQT
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |  Z(CTRL)  |     X     |     C     |     V     |     B     |        |     N     |     M     |     ,     |     .     |     /     |
+                &hm LCTRL A    &kp X       &kp C       &kp V       &kp B                &kp N       &kp M     &kp COMMA    &kp DOT     &kp FSLH
+            // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
+            //                           |    TAB(L1)    |   SPACE(SHIFT)  |        |    ENTER(L2)    | BACKSPACE(L3) |
+                                             &lt 1 TAB     &hm LSHFT SPACE              &lt 2 ENTER      &lt 3 BSPC
+            //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
 
-        navigation { // Layer 1
-            label = "NAV";
-            display-name = "Nav";
+        layer_1 { // numpad
+            label = "LAYER_1";
+            display-name = "Layer 1";
             bindings = <
-                &none    &none    &none     &none     &none           &kp K_AGAIN &kp K_PASTE &kp K_COPY &kp K_CUT &kp K_UNDO
-                &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none           &kp LEFT    &kp DOWN    &kp UP     &kp RIGHT &kp CAPS
-                &none    &none    &none     &none     &none           &kp INS     &kp PG_DN   &kp PG_UP  &kp HOME  &kp END
-                                            &none     &none           &kp RET     &kt BSPC         
+            // ╭───────────┬───────────┬───────────┬───────────┬───────────╮        ╭───────────┬───────────┬───────────┬───────────┬───────────╮
+            // |    GUI    |    ESC    |     (     |     )     |   DELETE  |        |     /     |     7     |     8     |     9     |     *     |
+                 &kp LGUI     &kp ESC     &kp LPAR    &kp RPAR    &kp DEL              &kp FSLH     &kp N7      &kp N8      &kp N9     &kp STAR
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    ALT    | CAPS LOCK |     [     |     ]     | BACKSPACE |        |     -     |     4     |     5     |     6     |     +     |
+                 &kp LALT    &kp CAPS     &kp LBKT    &kp RBKT   &kp BSPC             &kp MINUS     &kp N4      &kp N5      &kp N6     &kp PLUS
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    CTRL   |           |     {     |     }     |           |        |     ,     |     1     |     2     |     3     |     =     |
+                 &kp LCTRL     &none       &kp C       &kp V       &none              &kp COMMA     &kp N1      &kp N2      &kp N3     &kp EQUAL
+            // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
+            //                           |   ((ACTIVE))  |      SHIFT      |        |        0        |       .       |
+                                               &none          &kp LSHFT                   &kp N0           &kp DOT
+            //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
 
-        media { // Layer 2
-            label = "MEDIA";
-            display-name = "Media";
+        layer_2 { // navigation, function, media
+            label = "LAYER_2";
+            display-name = "Layer 2";
             bindings = <
-                &tog 3   &none    &none     &none     &none           &kp C_PLAY     &kp C_PREV   &kp C_NEXT    &bt BT_PRV &bt BT_NXT
-                &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none           &kp C_MUTE     &kp C_VOL_DN &kp C_VOL_UP  &bt BT_CLR &none
-                &none    &none    &none     &none     &none           &studio_unlock &none        &none         &none      &none
-                                            &none     &none           &none     &none         
+            // ╭───────────┬───────────┬───────────┬───────────┬───────────╮        ╭───────────┬───────────┬───────────┬───────────┬───────────╮
+            // |    GUI    |     F1    |     F2    |     F3    |     F4    |        |  VOL UP   |           |     ↑     |           | BRIGHT UP |
+                 &kp LGUI     &kp F1      &kp F2      &kp F3      &kp F4             &kp C_VOL_UP   &none      &kp UP       &none    &kp C_BRI_UP
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    ALT    |     F5    |     F6    |     F7    |     F8    |        |  VOL DOWN |     ←     |     ↓     |     →     |BRIGHT DOWN|
+                 &kp LALT     &kp F5      &kp F6      &kp F7      &kp F8             &kp C_VOL_UP  &kp LEFT   &kp DOWN    &kp RIGHT  &kp C_BRI_DN
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    CTRL   |     F9    |    F10    |    F11    |    F12    |        |    MUTE   |     1     |     2     |     3     |           |
+                 &kp LCTRL    &kp F9      &kp F10     &kp F11     &kp F12             &kp C_MUTE  &kp C_PREV  &kp C_PP    &kp C_NEXT    &none
+            // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
+            //                           |               |      SHIFT      |        |    ((ACTIVE))   |               |
+                                               &none          &kp LSHFT                    &none            &none
+            //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
 
-        gaming { // Layer 3
-            label = "GAME";
-            display-name = "Game";
+        layer_3 { // pointer
+            label = "LAYER 3";
+            display-name = "Layer 3";
             bindings = <
-                &tog 3    &kp Q  &kp W  &kp E  &kp R          &kp T  &kp Y  &kp U  &kp I  &kp O
-                &kp LSHFT &kp A  &kp S  &kp D  &kp F          &kp G  &kp H  &kp J  &kp K  &kp L
-                &kp LCTRL &kp Z  &kp X  &kp C  &kp V          &kp B  &kp N  &kp M  &kp P  &kp DOT
-                                 &kp SPACE   &kp TAB          &kp RET &kp BSPC
+            // ╭───────────┬───────────┬───────────┬───────────┬───────────╮        ╭───────────┬───────────┬───────────┬───────────┬───────────╮
+            // |    GUI    |           |           |           |           |        |           |           |           |           |           |
+                 &kp LGUI      &none       &none       &none       &none                &none       &none       &none       &none       &none
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    ALT    |           |           |           |           |        |           |           |           |           |           |
+                 &kp LALT      &none       &none       &none       &none                &none       &none       &none       &none       &none
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    CTRL   |PRINTSCREEN|SCROLL LOCK|   PAUSE   |           |        |           |  PAGE UP  | PAGE DOWN |    HOME   |    END    |
+                 &kp LCTRL    &PSCRN       &SLCK    &PAUSE_BREAK   &none                &none     &kp PG_UP   &kp PG_DN    &kp HOME    &kp END
+            // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
+            //                           |               |      SHIFT      |        |     INSERT      |   ((ACTIVE))  |
+                                               &none          &kp LSHFT                    &INS             &none
+            //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
 
-        number { // Layer 4
-            label = "NUM";
-            display-name = "Num";
+        layer_4 { // symbol
+            label = "LAYER 4";
+            display-name = "Layer 4";
             bindings = <
-                &kp LBKT  &kp N7 &kp N8 &kp N9 &kp RBKT       &none  &none     &none     &none    &none
-                &kp SQT   &kp N4 &kp N5 &kp N6 &kp EQUAL      &none  &kp LSHFT &kp LCTRL &kp LALT &kp LGUI
-                &kp GRAVE &kp N1 &kp N2 &kp N3 &kp BSLH       &none  &kp RALT  &none     &none    &none
-                                      &kp N0 &kp MINUS        &none  &none
-            >;
-        };
-
-        symbol { // Layer 5
-            label = "SYM";
-            display-name = "Sym";
-            bindings = <
-                &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC       &none  &none     &none     &none    &none
-                &kp DQT   &kp DLLR &kp PRCNT &kp CARET &kp PLUS       &none  &kp LSHFT &kp LCTRL &kp LALT &kp LGUI
-                &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE       &none  &kp RALT  &none     &none    &none
-                                            &kp RPAR &kp UNDER        &none  &none
-            >;
-        };
-
-        function { // Layer 6
-            label = "FUN";
-            display-name = "Fn";
-            bindings = <
-                &none    &none    &none     &none     &none           &kp PRINTSCREEN &kp F7 &kp F8 &kp F9 &kp F12
-                &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none           &kp SLCK        &kp F4 &kp F5 &kp F6 &kp F11
-                &none    &none    &none     &none     &none           &kp PAUSE_BREAK &kp F1 &kp F2 &kp F3 &kp F10
-                                            &none     &none           &kp RET     &kt BSPC        
+            // ╭───────────┬───────────┬───────────┬───────────┬───────────╮        ╭───────────┬───────────┬───────────┬───────────┬───────────╮
+            // |    GUI    |     ~     |     `     |     ^     |           |        |           |     \     |     |     |     _     |           |
+                 &kp LGUI    &kp TILDE   &kp GRAVE   &kp CARET     &none                &none      &kp BSLH    &kp PIPE   &kp UNDER     &none
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    ALT    |     !     |     @     |     #     |     &     |        |     %     |     :     |     ;     |     $     | ((ACTIVE))|
+                 &kp LALT     &kp EXCL     &kp AT     &kp HASH    &kp AMPS            &kp PRCNT   &kp COLON    &kp SEMI    &kp DLLR     &none
+            // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
+            // |    CTRL   |           |           |           |           |        |           |           |           |           |           |
+                 &kp LCTRL     &none       &none       &none       &none                &none       &none       &none       &none       &none
+            // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
+            //                           |               |      SHIFT      |        |                 |               |
+                                               &none          &kp LSHFT                    &none            &none
+            //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
     };
