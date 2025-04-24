@@ -1,0 +1,20 @@
+if SHIELD_N36TSU_LEFT
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "n36tsu"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_N36TSU_LEFT || SHIELD_N36TSU_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM_ROTATE
+    bool "Rotates screens -90 for main and 90 for side"
+
+endif
