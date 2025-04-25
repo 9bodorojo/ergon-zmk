@@ -53,11 +53,11 @@
             // |    GUI    |     ALT   |    CTRL   |   SHIFT   |     &     |        |     _     |     (     |     )     |     :     |     ;     |
                  &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT    &kp AMPS            &kp UNDER    &kp LPAR    &kp RPAR    &kp COLON   &kp SEMI 
             // ├───────────┼───────────┼───────────┼───────────┼───────────┤        ├───────────┼───────────┼───────────┼───────────┼───────────┤
-            // |     `     |     ~     |           |           |           |        |           |     {     |     }     |     ,     |     .     |
-                 &kp GRAVE   &kp TILDE     &none       &none       &none                &none      &kp LBRC    &kp RBRC    &kp COMMA   &kp DOT
+            // |    REDO   | HIGHLIGHT |   ITALIC  | UNDERLINE | DUPLICATE |        |     ¥     |     {     |     }     |     ,     |     .     |
+                 &kp LC(Y) &kp LC(LS(H)) &kp LC(I)   &kp LC(U)    &kp LC(D)          &kp INT_YEN   &kp LBRC    &kp RBRC    &kp COMMA   &kp DOT
             // ╰───────────┴───────────┴─┬─────────┴─────┬─────┴───────────┤        ├───────────┴─────┬── ──┴─────────┬─┴───────────┴───────────╯
-            //                           |  ((PRESSING)) |                 |        |                 |               |
-                                                &none           &none                      &none            &none    
+            //                           |  ((PRESSING)) |        `        |        |        ~        |               |
+                                                &none         &kp GRAVE                  &kp TILDE          &none
             //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
             >;
         };
@@ -119,6 +119,28 @@
             //                           |   CAPS LOCK   |                 |        |                 | ((PRESSING))  |
                                               &kp CAPS          &none                      &none            &none    
             //                           ╰───────────────┴─────────────────╯        ╰─────────────────┴───────────────╯
+            >;
+        };
+
+        symbol { // Layer 5
+            label = "SYM";
+            display-name = "Sym";
+            bindings = <
+                &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC       &none  &none     &none     &none    &none
+                &kp DQT   &kp DLLR &kp PRCNT &kp CARET &kp PLUS       &none  &kp LSHFT &kp LCTRL &kp LALT &kp LGUI
+                &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE       &none  &kp RALT  &none     &none    &none
+                                            &kp RPAR &kp UNDER        &none  &none
+            >;
+        };
+
+        function { // Layer 6
+            label = "FUN";
+            display-name = "Fn";
+            bindings = <
+                &none    &none    &none     &none     &none           &kp PRINTSCREEN &kp F7 &kp F8 &kp F9 &kp F12
+                &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none           &kp SLCK        &kp F4 &kp F5 &kp F6 &kp F11
+                &none    &none    &none     &none     &none           &kp PAUSE_BREAK &kp F1 &kp F2 &kp F3 &kp F10
+                                            &none     &none           &kp RET     &kt BSPC        
             >;
         };
 
